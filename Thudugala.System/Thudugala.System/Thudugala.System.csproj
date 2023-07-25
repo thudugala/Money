@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <NeutralLanguage>en</NeutralLanguage>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Elvin (Tharindu) Thudugala</Authors>
+    <PackageTags>.Net, Money, Exchange Rate, Currency</PackageTags>
+    <PackageProjectUrl>https://github.com/thudugala/Money</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/thudugala/Money</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>A Money class with multi-currency arithmetic</Description>
+    <PackageIcon>icon.png</PackageIcon>
+    <Copyright>Copyright © Elvin (Tharindu) Thudugala</Copyright>
+    <Version>1.0.0</Version>
+    <PackageReleaseNotes>Check: https://github.com/thudugala/Money/releases </PackageReleaseNotes>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Screenshots\icon.png" Pack="True" PackagePath="\" Link="Properties\icon.png" />
+    <None Include="..\..\README.md" Pack="True" PackagePath="\" Link="Properties\README.md" />
+  </ItemGroup>
+
+</Project>
