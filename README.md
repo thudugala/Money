@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/thudugala/Money/main/Screenshots/icon.png" width="128px"/>
 
-[![.NET](https://github.com/thudugala/Money/actions/workflows/dotnet.yml/badge.svg)](https://github.com/thudugala/Money/actions/workflows/dotnet.yml)
+[![CI](https://github.com/thudugala/Money/actions/workflows/dotnet.yml/badge.svg)](https://github.com/thudugala/Money/actions/workflows/dotnet.yml)
 [![NuGet](https://img.shields.io/nuget/v/Thudugala.MultiCurrencyMoney.svg)](https://www.nuget.org/packages/Thudugala.MultiCurrencyMoney/) 
 [![NuGet](https://img.shields.io/nuget/dt/Thudugala.MultiCurrencyMoney.svg)](https://www.nuget.org/packages/Thudugala.MultiCurrencyMoney/)
 
