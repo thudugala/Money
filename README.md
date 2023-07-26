@@ -39,7 +39,7 @@ Money can be multiplied by ExchangeRate and changed to different Currency
 
 ```cs
 var m1 = new Money(1m, CurrencyCode.USD);
-var rate = new ExchangeRate(CurrencyCode.USD, CurrencyCode.NZD, 1.6m);
+var rate = new ExchangeRate(CurrencyCode.USD, CurrencyCode.NZD, 1.6m, DateTime.Today);
 
 var result = m1 * rate;
 Assert.Equal(new Money(1.6m, CurrencyCode.NZD), result);
