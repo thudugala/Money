@@ -11,23 +11,25 @@ A Money class with multi-currency arithmetic for.Net
 var m1 = new Money(0m, CurrencyCode.NZD);
 
 // When CurrencyCode is not specified.
-// CurrencyCode will default to GlobalSetting.DefaultISOCurrencySymbol.
+// CurrencyCode will default to GlobalSetting.DefaultCurrencyCode.
 var m2 = new Money(0m);
 
 // When the amount and CurrencyCode are not specified.
-// The amount will default to zero, and CurrencyCode will default to GlobalSetting.DefaultISOCurrencySymbol.
+// The amount will default to zero, and CurrencyCode will default to GlobalSetting.DefaultCurrencyCode.
 var m3 = new Money();
 
 // Money.Empty is the same as new Money()
 var m4 = Money.Empty;
+
+var m5 = Money.Parse("1.06 NZD");
 ```
 
 ### CurrencyCode
 
-Default CurrencyCode is GlobalSetting.DefaultISOCurrencySymbol and can be changed
+Default CurrencyCode is GlobalSetting.DefaultCurrencyCode and can be changed
 
 ```cs
-GlobalSetting.DefaultISOCurrencySymbol = CurrencyCode.AUD
+GlobalSetting.DefaultCurrencyCode = CurrencyCode.AUD
 ```
 CurrencyCode class can be to be inherited and ad new currency codes if needed
 
