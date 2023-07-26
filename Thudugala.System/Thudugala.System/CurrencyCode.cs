@@ -256,5 +256,52 @@ namespace Thudugala.System
         }
 
         #endregion Comparable
+
+        #region Parse
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="iSOCurrencySymbol"></param>
+        /// <returns></returns>
+        /// <exception cref="OverflowException"></exception>
+        public static CurrencyCode Parse(string iSOCurrencySymbol)
+        {
+            if (string.IsNullOrWhiteSpace(iSOCurrencySymbol))
+            {
+                throw new ArgumentException($"'{nameof(iSOCurrencySymbol)}' cannot be null or whitespace.", nameof(iSOCurrencySymbol));
+            }
+
+            var field = typeof(CurrencyCode).GetField(iSOCurrencySymbol);
+            if (!field.IsPublic || !field.IsStatic || field.FieldType != typeof(CurrencyCode))
+            {
+                throw new OverflowException($"Expect: {nameof(iSOCurrencySymbol)} not found");
+            }
+            var code = field.GetValue(null) as CurrencyCode;
+
+            return code;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="iSOCurrencySymbol"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool TryParse(string iSOCurrencySymbol, out CurrencyCode result)
+        {
+            try
+            {
+                result = Parse(iSOCurrencySymbol);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        #endregion Parse
     }
 }

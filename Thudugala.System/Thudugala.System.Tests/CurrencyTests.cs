@@ -46,5 +46,14 @@ public class CurrencyTests
         {
             Assert.Contains(currencyCode, existingCurrencyCodes);
         }
-    }        
+    }
+
+    [Fact]
+    public void CurrencyParse()
+    {
+        var nzd = CurrencyCode.Parse("NZD");
+
+        Assert.NotNull(nzd);
+        Assert.Equal(CurrencyCode.NZD, nzd);
+    }
 }

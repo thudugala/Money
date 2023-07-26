@@ -13,10 +13,13 @@
 
     public class CustomCurrencyCode : CurrencyCode
     {
-        public static CustomCurrencyCode MBTC = new("mBTC", "B", "Bitcoin");
+        public static CustomCurrencyCode MBTC = new("mBTC", "B", "Bitcoin", "Bitcoin Currency");
 
-        public CustomCurrencyCode(string iSOCurrencySymbol, string currencySymbol, string englishName) : base(iSOCurrencySymbol, currencySymbol, englishName)
+        public string Description { get; }
+
+        public CustomCurrencyCode(string iSOCurrencySymbol, string currencySymbol, string englishName, string description) : base(iSOCurrencySymbol, currencySymbol, englishName)
         {
+            Description = description;
         }
     }
 }

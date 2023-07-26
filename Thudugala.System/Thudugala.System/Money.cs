@@ -400,5 +400,69 @@ namespace Thudugala.System
         }
 
         #endregion Binary Operations
+
+        #region Parse
+
+        /// <summary>
+        /// Expect: Amount ISOCurrencySymbol
+        /// Example '1.05 NZD'
+        /// </summary>
+        /// <param name="moneyString"></param>
+        /// <returns></returns>
+        public static Money Parse(string moneyString)
+        {
+            if (moneyString is null)
+            {
+                return Empty;
+            }
+
+            var sArray = moneyString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (sArray.Length > 3)
+            {
+                throw new OverflowException($"Expect: {nameof(Amount)} {nameof(CurrencyCode.NZD.ISOCurrencySymbol)}");
+            }
+
+            switch (sArray.Length)
+            {
+                case 0:
+                    return Empty;
+
+                case 1:
+                    {
+                        return decimal.TryParse(sArray[0], out var amount) ? new Money(amount) : throw new OverflowException($"Expect: {nameof(Amount)}");
+                    }
+
+                case 2:
+                    {
+                        return decimal.TryParse(sArray[0], out var amount) &&
+                            CurrencyCode.TryParse(sArray[1], out var currencyCode)
+                            ? new Money(amount, currencyCode)
+                            : throw new OverflowException($"Expect: {nameof(Amount)} {nameof(CurrencyCode.NZD.ISOCurrencySymbol)}");
+                    }
+            }
+            throw new OverflowException($"Expect: {nameof(Amount)} {nameof(CurrencyCode.NZD.ISOCurrencySymbol)}");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moneyString"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool TryParse(string moneyString, out Money result)
+        {
+            try
+            {
+                result = Parse(moneyString);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        #endregion
     }
 }

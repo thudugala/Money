@@ -234,4 +234,12 @@ public class MoneyTests
 
         Assert.Equal($"{m1.Currency.CurrencySymbol} {m1.Amount:N2}", stringM1);
     }
+
+    [Fact]
+    public void MoneyParse()
+    {
+        var m1 = Money.Parse("1.06 NZD");
+
+        Assert.Equal(new Money(1.06m, CurrencyCode.NZD), m1);
+    }
 }
