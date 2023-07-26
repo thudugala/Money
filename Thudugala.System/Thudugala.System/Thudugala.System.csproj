@@ -22,7 +22,7 @@
     <Description>A Money class with multi-currency arithmetic</Description>
     <PackageIcon>icon.png</PackageIcon>
     <Copyright>Copyright © Elvin (Tharindu) Thudugala</Copyright>
-    <Version>1.0.0</Version>
+    <Version>0.0.1</Version>
     <PackageReleaseNotes>Check: https://github.com/thudugala/Money/releases </PackageReleaseNotes>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
