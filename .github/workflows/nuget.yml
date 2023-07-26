@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore "Thudugala.MultiCurrencyMoney/Thudugala.MultiCurrencyMoney.sln"
 
     - name: Build
-      run: dotnet build "Thudugala.MultiCurrencyMoney/Thudugala.MultiCurrencyMoney.sln" --no-restore
+      run: dotnet build "Thudugala.MultiCurrencyMoney/Thudugala.MultiCurrencyMoney.sln" --no-restore --configuration Release
    
     - uses: actions/upload-artifact@v2.2.4
       with:
