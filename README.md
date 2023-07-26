@@ -1,5 +1,8 @@
 <img src="https://raw.githubusercontent.com/thudugala/Money/main/Screenshots/icon.png" width="128px"/>
 
+[![NuGet](https://img.shields.io/nuget/v/Thudugala.MultiCurrencyMoney.svg)](https://www.nuget.org/packages/Thudugala.MultiCurrencyMoney/) 
+[![NuGet](https://img.shields.io/nuget/dt/Thudugala.MultiCurrencyMoney.svg)](https://www.nuget.org/packages/Thudugala.MultiCurrencyMoney/)
+
 # Money
 A Money class with multi-currency arithmetic for.Net
 
