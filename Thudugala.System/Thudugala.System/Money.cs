@@ -22,7 +22,7 @@ namespace Thudugala.System
         /// <summary>
         /// 
         /// </summary>
-        public Money() : this(0, (CurrencyCode)Enum.Parse(typeof(CurrencyCode), RegionInfo.CurrentRegion.ISOCurrencySymbol))
+        public Money() : this(0)
         {
 
         }
@@ -31,7 +31,7 @@ namespace Thudugala.System
         /// 
         /// </summary>
         /// <param name="amount"></param>
-        public Money(decimal amount) : this(amount, (CurrencyCode)Enum.Parse(typeof(CurrencyCode), RegionInfo.CurrentRegion.ISOCurrencySymbol))
+        public Money(decimal amount) : this(amount, null)
         {
 
         }
@@ -44,7 +44,7 @@ namespace Thudugala.System
         public Money(decimal amount, CurrencyCode currency)
         {
             Amount = amount;
-            Currency = currency;
+            Currency = currency ?? new CurrencyCode();
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Thudugala.System
         {
             CurrencyMismatchException.ThrowIfMisMatch(Currency, other.Currency);
 
-            return Amount.CompareTo(other.Amount);
+            return decimal.Compare(Amount, other.Amount);
         }
 
         /// <summary>
@@ -396,7 +396,5 @@ namespace Thudugala.System
         public static Money operator %(decimal left, Money right) => new(left % right.Amount, right.Currency);
 
         #endregion
-
-
     }
 }

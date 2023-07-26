@@ -1,203 +1,220 @@
-﻿namespace Thudugala.System
+﻿using System;
+using Thudugala.System.Exceptions;
+
+namespace Thudugala.System
 {
     /// <summary>
-    /// 
+    /// Designed to be inheritant and ad new currency codes if needed. 
     /// </summary>
-    public readonly struct CurrencyCode
+    public class CurrencyCode : IComparable, IComparable<CurrencyCode>, IEquatable<CurrencyCode>
     {
+        public const string AED = "AED";
+        public const string AFN = "AFN";
+        public const string ALL = "ALL";
+        public const string AMD = "AMD";
+        public const string ANG = "ANG";
+        public const string AOA = "AOA";
+        public const string ARS = "ARS";
+        public const string AUD = "AUD";
+        public const string AWG = "AWG";
+        public const string AZN = "AZN";
+        public const string BAM = "BAM";
+        public const string BBD = "BBD";
+        public const string BDT = "BDT";
+        public const string BGN = "BGN";
+        public const string BHD = "BHD";
+        public const string BIF = "BIF";
+        public const string BMD = "BMD";
+        public const string BND = "BND";
+        public const string BOB = "BOB";
+        public const string BOV = "BOV";
+        public const string BRL = "BRL";
+        public const string BSD = "BSD";
+        public const string BTN = "BTN";
+        public const string BWP = "BWP";
+        public const string BYN = "BYN";
+        public const string BYR = "BYR";
+        public const string BZD = "BZD";
+        public const string CAD = "CAD";
+        public const string CDF = "CDF";
+        public const string CHE = "CHE";
+        public const string CHF = "CHF";
+        public const string CHW = "CHW";
+        public const string CLF = "CLF";
+        public const string CLP = "CLP";
+        public const string CNY = "CNY";
+        public const string COP = "COP";
+        public const string COU = "COU";
+        public const string CRC = "CRC";
+        public const string CUC = "CUC";
+        public const string CUP = "CUP";
+        public const string CVE = "CVE";
+        public const string CZK = "CZK";
+        public const string DJF = "DJF";
+        public const string DKK = "DKK";
+        public const string DOP = "DOP";
+        public const string DZD = "DZD";
+        public const string EGP = "EGP";
+        public const string ERN = "ERN";
+        public const string ETB = "ETB";
+        public const string EUR = "EUR";
+        public const string FJD = "FJD";
+        public const string FKP = "FKP";
+        public const string GBP = "GBP";
+        public const string GEL = "GEL";
+        public const string GHS = "GHS";
+        public const string GIP = "GIP";
+        public const string GMD = "GMD";
+        public const string GNF = "GNF";
+        public const string GTQ = "GTQ";
+        public const string GYD = "GYD";
+        public const string HKD = "HKD";
+        public const string HNL = "HNL";
+        public const string HRK = "HRK";
+        public const string HTG = "HTG";
+        public const string HUF = "HUF";
+        public const string IDR = "IDR";
+        public const string ILS = "ILS";
+        public const string INR = "INR";
+        public const string IQD = "IQD";
+        public const string IRR = "IRR";
+        public const string ISK = "ISK";
+        public const string JMD = "JMD";
+        public const string JOD = "JOD";
+        public const string JPY = "JPY";
+        public const string KES = "KES";
+        public const string KGS = "KGS";
+        public const string KHR = "KHR";
+        public const string KMF = "KMF";
+        public const string KPW = "KPW";
+        public const string KRW = "KRW";
+        public const string KWD = "KWD";
+        public const string KYD = "KYD";
+        public const string KZT = "KZT";
+        public const string LAK = "LAK";
+        public const string LBP = "LBP";
+        public const string LKR = "LKR";
+        public const string LRD = "LRD";
+        public const string LSL = "LSL";
+        public const string LYD = "LYD";
+        public const string MAD = "MAD";
+        public const string MDL = "MDL";
+        public const string MGA = "MGA";
+        public const string MKD = "MKD";
+        public const string MMK = "MMK";
+        public const string MNT = "MNT";
+        public const string MOP = "MOP";
+        public const string MRO = "MRO";
+        public const string MUR = "MUR";
+        public const string MVR = "MVR";
+        public const string MWK = "MWK";
+        public const string MXN = "MXN";
+        public const string MXV = "MXV";
+        public const string MYR = "MYR";
+        public const string MZN = "MZN";
+        public const string NAD = "NAD";
+        public const string NGN = "NGN";
+        public const string NIO = "NIO";
+        public const string NOK = "NOK";
+        public const string NPR = "NPR";
+        public const string NZD = "NZD";
+        public const string OMR = "OMR";
+        public const string PAB = "PAB";
+        public const string PEN = "PEN";
+        public const string PGK = "PGK";
+        public const string PHP = "PHP";
+        public const string PKR = "PKR";
+        public const string PLN = "PLN";
+        public const string PYG = "PYG";
+        public const string QAR = "QAR";
+        public const string RON = "RON";
+        public const string RSD = "RSD";
+        public const string RUB = "RUB";
+        public const string RWF = "RWF";
+        public const string SAR = "SAR";
+        public const string SBD = "SBD";
+        public const string SCR = "SCR";
+        public const string SDG = "SDG";
+        public const string SEK = "SEK";
+        public const string SGD = "SGD";
+        public const string SHP = "SHP";
+        public const string SLL = "SLL";
+        public const string SOS = "SOS";
+        public const string SRD = "SRD";
+        public const string SSP = "SSP";
+        public const string STD = "STD";
+        public const string SVC = "SVC";
+        public const string SYP = "SYP";
+        public const string SZL = "SZL";
+        public const string THB = "THB";
+        public const string TJS = "TJS";
+        public const string TMT = "TMT";
+        public const string TND = "TND";
+        public const string TOP = "TOP";
+        public const string TRY = "TRY";
+        public const string TTD = "TTD";
+        public const string TWD = "TWD";
+        public const string TZS = "TZS";
+        public const string UAH = "UAH";
+        public const string UGX = "UGX";
+        public const string USD = "USD";
+        public const string USN = "USN";
+        public const string UYI = "UYI";
+        public const string UYU = "UYU";
+        public const string UZS = "UZS";
+        public const string VED = "VED";
+        public const string VEF = "VEF";
+        public const string VES = "VES";
+        public const string VND = "VND";
+        public const string VUV = "VUV";
+        public const string WST = "WST";
+        public const string XAF = "XAF";
+        public const string XAG = "XAG";
+        public const string XAU = "XAU";
+        public const string XBA = "XBA";
+        public const string XBB = "XBB";
+        public const string XBC = "XBC";
+        public const string XBD = "XBD";
+        public const string XCD = "XCD";
+        public const string XDR = "XDR";
+        public const string XOF = "XOF";
+        public const string XPD = "XPD";
+        public const string XPF = "XPF";
+        public const string XPT = "XPT";
+        public const string XSU = "XSU";
+        public const string XTS = "XTS";
+        public const string XUA = "XUA";
+        public const string XXX = "XXX";
+        public const string YER = "YER";
+        public const string ZAR = "ZAR";
+        public const string ZMW = "ZMW";
+        public const string ZWL = "ZWL";
+
         /// <summary>
         /// 
         /// </summary>
-        public int Value { get; }
+        public string Value { get; }
 
-        public const int AED = 784;
-        public const int AFN = 971;
-        public const int ALL = 008;
-        public const int AMD = 051;
-        public const int ANG = 532;
-        public const int AOA = 973;
-        public const int ARS = 032;
-        public const int AUD = 036;
-        public const int AWG = 533;
-        public const int AZN = 944;
-        public const int BAM = 977;
-        public const int BBD = 052;
-        public const int BDT = 050;
-        public const int BGN = 975;
-        public const int BHD = 048;
-        public const int BIF = 108;
-        public const int BMD = 060;
-        public const int BND = 096;
-        public const int BOB = 068;
-        public const int BOV = 984;
-        public const int BRL = 986;
-        public const int BSD = 044;
-        public const int BTN = 064;
-        public const int BWP = 072;
-        public const int BYN = 933;
-        public const int BYR = 974;
-        public const int BZD = 084;
-        public const int CAD = 124;
-        public const int CDF = 976;
-        public const int CHE = 947;
-        public const int CHF = 756;
-        public const int CHW = 948;
-        public const int CLF = 990;
-        public const int CLP = 152;
-        public const int CNY = 156;
-        public const int COP = 170;
-        public const int COU = 970;
-        public const int CRC = 188;
-        public const int CUC = 931;
-        public const int CUP = 192;
-        public const int CVE = 132;
-        public const int CZK = 203;
-        public const int DJF = 262;
-        public const int DKK = 208;
-        public const int DOP = 214;
-        public const int DZD = 012;
-        public const int EGP = 818;
-        public const int ERN = 232;
-        public const int ETB = 230;
-        public const int EUR = 978;
-        public const int FJD = 242;
-        public const int FKP = 238;
-        public const int GBP = 826;
-        public const int GEL = 981;
-        public const int GHS = 936;
-        public const int GIP = 292;
-        public const int GMD = 270;
-        public const int GNF = 324;
-        public const int GTQ = 320;
-        public const int GYD = 328;
-        public const int HKD = 344;
-        public const int HNL = 340;
-        public const int HRK = 191;
-        public const int HTG = 332;
-        public const int HUF = 348;
-        public const int IDR = 360;
-        public const int ILS = 376;
-        public const int INR = 356;
-        public const int IQD = 368;
-        public const int IRR = 364;
-        public const int ISK = 352;
-        public const int JMD = 388;
-        public const int JOD = 400;
-        public const int JPY = 392;
-        public const int KES = 404;
-        public const int KGS = 417;
-        public const int KHR = 116;
-        public const int KMF = 174;
-        public const int KPW = 408;
-        public const int KRW = 410;
-        public const int KWD = 414;
-        public const int KYD = 136;
-        public const int KZT = 398;
-        public const int LAK = 418;
-        public const int LBP = 422;
-        public const int LKR = 144;
-        public const int LRD = 430;
-        public const int LSL = 426;
-        public const int LYD = 434;
-        public const int MAD = 504;
-        public const int MDL = 498;
-        public const int MGA = 969;
-        public const int MKD = 807;
-        public const int MMK = 104;
-        public const int MNT = 496;
-        public const int MOP = 446;
-        public const int MRO = 478;
-        public const int MUR = 480;
-        public const int MVR = 462;
-        public const int MWK = 454;
-        public const int MXN = 484;
-        public const int MXV = 979;
-        public const int MYR = 458;
-        public const int MZN = 943;
-        public const int NAD = 516;
-        public const int NGN = 566;
-        public const int NIO = 558;
-        public const int NOK = 578;
-        public const int NPR = 524;
-        public const int NZD = 554;
-        public const int OMR = 512;
-        public const int PAB = 590;
-        public const int PEN = 604;
-        public const int PGK = 598;
-        public const int PHP = 608;
-        public const int PKR = 586;
-        public const int PLN = 985;
-        public const int PYG = 600;
-        public const int QAR = 634;
-        public const int RON = 946;
-        public const int RSD = 941;
-        public const int RUB = 643;
-        public const int RWF = 646;
-        public const int SAR = 682;
-        public const int SBD = 090;
-        public const int SCR = 690;
-        public const int SDG = 938;
-        public const int SEK = 752;
-        public const int SGD = 702;
-        public const int SHP = 654;
-        public const int SLL = 694;
-        public const int SOS = 706;
-        public const int SRD = 968;
-        public const int SSP = 728;
-        public const int STD = 678;
-        public const int SVC = 222;
-        public const int SYP = 760;
-        public const int SZL = 748;
-        public const int THB = 764;
-        public const int TJS = 972;
-        public const int TMT = 934;
-        public const int TND = 788;
-        public const int TOP = 776;
-        public const int TRY = 949;
-        public const int TTD = 780;
-        public const int TWD = 901;
-        public const int TZS = 834;
-        public const int UAH = 980;
-        public const int UGX = 800;
-        public const int USD = 840;
-        public const int USN = 997;
-        public const int UYI = 940;
-        public const int UYU = 858;
-        public const int UZS = 860;
-        public const int VED = 926;
-        public const int VEF = 937;
-        public const int VES = 928;
-        public const int VND = 704;
-        public const int VUV = 548;
-        public const int WST = 882;
-        public const int XAF = 950;
-        public const int XAG = 961;
-        public const int XAU = 959;
-        public const int XBA = 955;
-        public const int XBB = 956;
-        public const int XBC = 957;
-        public const int XBD = 958;
-        public const int XCD = 951;
-        public const int XDR = 960;
-        public const int XOF = 952;
-        public const int XPD = 964;
-        public const int XPF = 953;
-        public const int XPT = 962;
-        public const int XSU = 994;
-        public const int XTS = 963;
-        public const int XUA = 965;
-        public const int XXX = 999;
-        public const int YER = 886;
-        public const int ZAR = 710;
-        public const int ZMW = 967;
-        public const int ZWL = 932;
+        /// <summary>
+        /// Defualt Currency will be CurrentRegion.ISOCurrencySymbol
+        /// </summary>
+        public CurrencyCode()
+        {
+            Value = GlobalSetting.DefaultISOCurrencySymbol;
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public CurrencyCode(int value)
+        /// 
+        public CurrencyCode(string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException($"'{nameof(value)}' cannot be null or whitespace.", nameof(value));
+            }
+
             Value = value;
         }
 
@@ -205,12 +222,132 @@
         /// 
         /// </summary>
         /// <param name="cType"></param>
-        public static implicit operator int(CurrencyCode cType) => cType.Value;
+        public static implicit operator string(CurrencyCode cType) => cType.Value;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public static implicit operator CurrencyCode(int value) => new(value);
+        public static implicit operator CurrencyCode(string value) => new(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => Value;
+
+        #region Equality
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(CurrencyCode other)
+        {
+            return other is not null && (ReferenceEquals(this, other) || string.Equals(Value, other.Value));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public override bool Equals(object other)
+        {
+            return other is not null && (ReferenceEquals(this, other) || (other.GetType() == GetType() && Equals((CurrencyCode)other)));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return Value.GetHashCode() * 397;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(CurrencyCode left, CurrencyCode right) => left.Equals(right);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(CurrencyCode left, CurrencyCode right) => !(left == right);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(CurrencyCode left, string right) => left.Equals(new CurrencyCode(right));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(CurrencyCode left, string right) => !(left == new CurrencyCode(right));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(string left, CurrencyCode right) => right.Equals(new CurrencyCode(left));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(string left, CurrencyCode right) => !(right == new CurrencyCode(left));
+
+        #endregion
+
+        #region Comparable
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(CurrencyCode other)
+        {
+            return other is null ? 1 : ReferenceEquals(this, other) ? 0 : string.Compare(Value, other.Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(object other)
+        {
+            if (other is null)
+            {
+                return 1;
+            }
+            IncompatibleTypeException.ThrowIfMismatch(other.GetType(), GetType());
+
+            return CompareTo((CurrencyCode)other);
+        }
+
+        #endregion
     }
 }
