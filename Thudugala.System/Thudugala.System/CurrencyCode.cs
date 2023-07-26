@@ -303,5 +303,14 @@ namespace Thudugala.System
         }
 
         #endregion Parse
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public CurrencyCode DeepCopy()
+        {
+            return new CurrencyCode(ISOCurrencySymbol, CurrencySymbol, EnglishName);
+        }
     }
 }

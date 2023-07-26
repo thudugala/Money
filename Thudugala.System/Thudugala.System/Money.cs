@@ -444,7 +444,7 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="moneyString"></param>
         /// <param name="result"></param>
@@ -463,6 +463,6 @@ namespace Thudugala.System
             }
         }
 
-        #endregion
+        #endregion Parse
     }
 }

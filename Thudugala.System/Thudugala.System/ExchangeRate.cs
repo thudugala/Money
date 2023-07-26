@@ -1,5 +1,4 @@
 ﻿using System;
-using Thudugala.System.Exceptions;
 
 namespace Thudugala.System
 {
@@ -7,7 +6,7 @@ namespace Thudugala.System
     /// Will convert Money to different Currency with the given rate
     /// Example: 1 USD (FromCurrency) = 1.6 (Rate) NZD (ToCurrency)
     /// </summary>
-    public readonly struct ExchangeRate : IComparable, IComparable<ExchangeRate>, IEquatable<ExchangeRate>
+    public class ExchangeRate : ExchangeRateKey, IComparable, IComparable<ExchangeRate>, IEquatable<ExchangeRate>
     {
         /// <summary>
         ///
@@ -15,17 +14,12 @@ namespace Thudugala.System
         /// <param name="fromCurrency">Money Currency</param>
         /// <param name="toCurrency">Money to be Currency</param>
         /// <param name="rate">Rate will not be Zero or Negative</param>
-        public ExchangeRate(CurrencyCode fromCurrency, CurrencyCode toCurrency, decimal rate)
+        /// <param name="recordedAt"></param>
+        public ExchangeRate(CurrencyCode fromCurrency, CurrencyCode toCurrency, decimal rate, DateTime recordedAt)
+            : base(fromCurrency, toCurrency, recordedAt)
         {
-            FromCurrency = fromCurrency;
-            ToCurrency = toCurrency;
             Rate = rate == 0 ? 1 : Math.Abs(rate);
         }
-
-        /// <summary>
-        /// Money Currency
-        /// </summary>
-        public CurrencyCode FromCurrency { get; }
 
         /// <summary>
         /// Rate canot be Zero or Negative
@@ -33,15 +27,10 @@ namespace Thudugala.System
         public decimal Rate { get; }
 
         /// <summary>
-        /// Money to be Currency
-        /// </summary>
-        public CurrencyCode ToCurrency { get; }
-
-        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"1 {FromCurrency} = {Rate} {ToCurrency}";
+        public override string ToString() => $"1 {FromCurrency} = {Rate} {ToCurrency} at {RecordedAt}";
 
         #region Equality
 
@@ -68,9 +57,10 @@ namespace Thudugala.System
         /// <returns></returns>
         public bool Equals(ExchangeRate other)
         {
-            return CurrencyCode.Equals(FromCurrency, other.FromCurrency) &&
-                CurrencyCode.Equals(ToCurrency, other.ToCurrency) &&
-                decimal.Equals(Rate, other.Rate);
+            return other is not null &&
+            (ReferenceEquals(this, other) ||
+             (decimal.Equals(Rate, other.Rate) &&
+              base.Equals(other)));
         }
 
         /// <summary>
@@ -80,7 +70,7 @@ namespace Thudugala.System
         /// <returns></returns>
         public override bool Equals(object other)
         {
-            return other.GetType() == GetType() && Equals((ExchangeRate)other);
+            return other is not null && (ReferenceEquals(this, other) || (other.GetType() == GetType() && Equals((ExchangeRate)other)));
         }
 
         /// <summary>
@@ -91,7 +81,7 @@ namespace Thudugala.System
         {
             unchecked
             {
-                return (Rate.GetHashCode() * 397) ^ FromCurrency.GetHashCode() ^ ToCurrency.GetHashCode();
+                return (Rate.GetHashCode() * 397) ^ base.GetHashCode();
             }
         }
 
@@ -106,10 +96,8 @@ namespace Thudugala.System
         /// <returns></returns>
         public int CompareTo(ExchangeRate other)
         {
-            CurrencyMismatchException.ThrowIfMisMatch(FromCurrency, other.FromCurrency);
-            CurrencyMismatchException.ThrowIfMisMatch(ToCurrency, other.ToCurrency);
-
-            return Rate.CompareTo(other.Rate);
+            var result = base.CompareTo(other);
+            return result != 0 ? result : decimal.Compare(Rate, other.Rate);
         }
 
         /// <summary>
@@ -117,12 +105,20 @@ namespace Thudugala.System
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public int CompareTo(object other)
+        public new int CompareTo(object other)
         {
-            IncompatibleTypeException.ThrowIfMismatch(other.GetType(), GetType());
             return CompareTo((ExchangeRate)other);
         }
 
         #endregion Comparable
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public ExchangeRate DeepCopy()
+        {
+            return new ExchangeRate(FromCurrency.DeepCopy(), ToCurrency.DeepCopy(), Rate, RecordedAt);
+        }
     }
 }

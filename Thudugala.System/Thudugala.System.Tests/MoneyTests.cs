@@ -1,4 +1,3 @@
-using System.Globalization;
 using Thudugala.System.Exceptions;
 
 namespace Thudugala.System.Tests;
@@ -100,7 +99,7 @@ public class MoneyTests
     public void MoneyMultiplyExchangeRate()
     {
         var m1 = new Money(1m, CurrencyCode.USD);
-        var rate = new ExchangeRate(CurrencyCode.USD, CurrencyCode.NZD, 1.6m);
+        var rate = new ExchangeRate(CurrencyCode.USD, CurrencyCode.NZD, 1.6m, DateTime.Today);
 
         var result = m1 * rate;
         Assert.Equal(new Money(1.6m, CurrencyCode.NZD), result);
@@ -178,7 +177,6 @@ public class MoneyTests
         var result = m1 > m2;
         Assert.True(result);
     }
-
 
     [Fact]
     public void MoneyGreaterThanCheckDifferentCurrencyThrowsException()

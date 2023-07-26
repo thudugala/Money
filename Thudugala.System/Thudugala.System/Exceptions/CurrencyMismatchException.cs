@@ -3,12 +3,12 @@
 namespace Thudugala.System.Exceptions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class CurrencyMismatchException : InvalidOperationException
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sourceCurrency"></param>
         /// <param name="destinationCurrency"></param>
@@ -22,17 +22,17 @@ namespace Thudugala.System.Exceptions
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CurrencyCode DestinationCurrency { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CurrencyCode SourceCurrency { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sourceCurrency"></param>
         /// <param name="destinationCurrency"></param>

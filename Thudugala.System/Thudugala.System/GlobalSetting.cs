@@ -8,11 +8,36 @@ namespace Thudugala.System
     /// </summary>
     public static class GlobalSetting
     {
+        private static CurrencyCode baseCurrencyCode;
         private static CurrencyCode defaultCurrencyCode;
         private static Func<Money, string> moneyToString;
 
         /// <summary>
-        /// Set the Default ISOCurrencySymbol for CurrencyCode to use if not set by the user
+        /// Set the Default CurrencyCode to use when reading base exchange rates.
+        /// </summary>
+        public static CurrencyCode BaseCurrencyCode
+        {
+            get
+            {
+                if (baseCurrencyCode is null)
+                {
+                    ResetBaseCurrencyCode();
+                }
+                return baseCurrencyCode;
+            }
+
+            set
+            {
+                if (value is null)
+                {
+                    return;
+                }
+                baseCurrencyCode = value;
+            }
+        }
+
+        /// <summary>
+        /// Set the Default CurrencyCode to use if not set by the user
         /// </summary>
         public static CurrencyCode DefaultCurrencyCode
         {
@@ -34,6 +59,11 @@ namespace Thudugala.System
                 defaultCurrencyCode = value;
             }
         }
+
+        /// <summary>
+        /// The number of decimal places in the return value
+        /// </summary>
+        public static int ExchangeRateRoundingDecimalPlacesCount { get; set; } = 4;
 
         /// <summary>
         /// Get/Set Money ToString representation.
@@ -64,7 +94,15 @@ namespace Thudugala.System
         public static bool ShowISOCurrencySymbol { get; set; } = true;
 
         /// <summary>
-        /// Reset DefaultCurrencyCode to back to Current Region ISOCurrencySymbol
+        /// Reset back to USD
+        /// </summary>
+        public static void ResetBaseCurrencyCode()
+        {
+            BaseCurrencyCode = CurrencyCode.USD;
+        }
+
+        /// <summary>
+        /// Reset back to Current Region
         /// </summary>
         public static void ResetDefaultCurrencyCode()
         {
@@ -78,7 +116,7 @@ namespace Thudugala.System
         /// </summary>
         public static void ResetMoneyToString()
         {
-            moneyToString = (money) => { return $"{money.Amount} {money.Currency}"; };
+            MoneyToString = (money) => { return $"{money.Amount} {money.Currency}"; };
         }
     }
 }
