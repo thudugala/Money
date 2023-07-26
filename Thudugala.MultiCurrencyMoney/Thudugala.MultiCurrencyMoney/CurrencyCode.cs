@@ -1,7 +1,7 @@
 ﻿using System;
-using Thudugala.System.Exceptions;
+using Thudugala.MultiCurrencyMoney.Exceptions;
 
-namespace Thudugala.System
+namespace Thudugala.MultiCurrencyMoney
 {
     /// <summary>
     /// Designed to be inherited and ad new currency codes if needed.

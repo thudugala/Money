@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Thudugala.System.Exceptions
+namespace Thudugala.MultiCurrencyMoney.Exceptions
 {
     /// <summary>
     ///

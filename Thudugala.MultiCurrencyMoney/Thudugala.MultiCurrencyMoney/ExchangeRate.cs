@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Thudugala.System
+namespace Thudugala.MultiCurrencyMoney
 {
     /// <summary>
     /// Will convert Money to different Currency with the given rate

@@ -1,4 +1,4 @@
-﻿namespace Thudugala.System.Tests
+﻿namespace Thudugala.MultiCurrencyMoney.Tests
 {
     public class CustomCurrencyTests
     {

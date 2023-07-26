@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Thudugala.System
+namespace Thudugala.MultiCurrencyMoney
 {
     /// <summary>
     /// Setup Global Settings for type Money

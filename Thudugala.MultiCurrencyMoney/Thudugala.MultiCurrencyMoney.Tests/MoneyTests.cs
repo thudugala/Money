@@ -1,6 +1,6 @@
-using Thudugala.System.Exceptions;
+using Thudugala.MultiCurrencyMoney.Exceptions;
 
-namespace Thudugala.System.Tests;
+namespace Thudugala.MultiCurrencyMoney.Tests;
 
 public class MoneyTests
 {

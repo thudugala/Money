@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 
-namespace Thudugala.System.Tests;
+namespace Thudugala.MultiCurrencyMoney.Tests;
 
 public class CurrencyTests
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Thudugala.System.Services;
+namespace Thudugala.MultiCurrencyMoney.Services;
 
 /// <summary>
 ///
