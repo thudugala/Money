@@ -31,6 +31,6 @@ jobs:
           path: Thudugala.MultiCurrencyMoney/Thudugala.MultiCurrencyMoney/bin/Release/ 
 
     - name: Push generated package to GitHub registry
-      run: dotnet nuget push **/*.nupkg -Source "GitHub" -SkipDuplicate
+      run: dotnet nuget push **/*.nupkg --source "GitHub" -SkipDuplicate
       
       
