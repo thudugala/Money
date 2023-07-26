@@ -4,252 +4,207 @@ using Thudugala.System.Exceptions;
 namespace Thudugala.System
 {
     /// <summary>
-    /// Designed to be inherited and ad new currency codes if needed. 
+    /// Designed to be inherited and ad new currency codes if needed.
     /// </summary>
     public class CurrencyCode : IComparable, IComparable<CurrencyCode>, IEquatable<CurrencyCode>
     {
-        public const string AED = "AED";
-        public const string AFN = "AFN";
-        public const string ALL = "ALL";
-        public const string AMD = "AMD";
-        public const string ANG = "ANG";
-        public const string AOA = "AOA";
-        public const string ARS = "ARS";
-        public const string AUD = "AUD";
-        public const string AWG = "AWG";
-        public const string AZN = "AZN";
-        public const string BAM = "BAM";
-        public const string BBD = "BBD";
-        public const string BDT = "BDT";
-        public const string BGN = "BGN";
-        public const string BHD = "BHD";
-        public const string BIF = "BIF";
-        public const string BMD = "BMD";
-        public const string BND = "BND";
-        public const string BOB = "BOB";
-        public const string BOV = "BOV";
-        public const string BRL = "BRL";
-        public const string BSD = "BSD";
-        public const string BTN = "BTN";
-        public const string BWP = "BWP";
-        public const string BYN = "BYN";
-        public const string BYR = "BYR";
-        public const string BZD = "BZD";
-        public const string CAD = "CAD";
-        public const string CDF = "CDF";
-        public const string CHE = "CHE";
-        public const string CHF = "CHF";
-        public const string CHW = "CHW";
-        public const string CLF = "CLF";
-        public const string CLP = "CLP";
-        public const string CNY = "CNY";
-        public const string COP = "COP";
-        public const string COU = "COU";
-        public const string CRC = "CRC";
-        public const string CUC = "CUC";
-        public const string CUP = "CUP";
-        public const string CVE = "CVE";
-        public const string CZK = "CZK";
-        public const string DJF = "DJF";
-        public const string DKK = "DKK";
-        public const string DOP = "DOP";
-        public const string DZD = "DZD";
-        public const string EGP = "EGP";
-        public const string ERN = "ERN";
-        public const string ETB = "ETB";
-        public const string EUR = "EUR";
-        public const string FJD = "FJD";
-        public const string FKP = "FKP";
-        public const string GBP = "GBP";
-        public const string GEL = "GEL";
-        public const string GHS = "GHS";
-        public const string GIP = "GIP";
-        public const string GMD = "GMD";
-        public const string GNF = "GNF";
-        public const string GTQ = "GTQ";
-        public const string GYD = "GYD";
-        public const string HKD = "HKD";
-        public const string HNL = "HNL";
-        public const string HRK = "HRK";
-        public const string HTG = "HTG";
-        public const string HUF = "HUF";
-        public const string IDR = "IDR";
-        public const string ILS = "ILS";
-        public const string INR = "INR";
-        public const string IQD = "IQD";
-        public const string IRR = "IRR";
-        public const string ISK = "ISK";
-        public const string JMD = "JMD";
-        public const string JOD = "JOD";
-        public const string JPY = "JPY";
-        public const string KES = "KES";
-        public const string KGS = "KGS";
-        public const string KHR = "KHR";
-        public const string KMF = "KMF";
-        public const string KPW = "KPW";
-        public const string KRW = "KRW";
-        public const string KWD = "KWD";
-        public const string KYD = "KYD";
-        public const string KZT = "KZT";
-        public const string LAK = "LAK";
-        public const string LBP = "LBP";
-        public const string LKR = "LKR";
-        public const string LRD = "LRD";
-        public const string LSL = "LSL";
-        public const string LYD = "LYD";
-        public const string MAD = "MAD";
-        public const string MDL = "MDL";
-        public const string MGA = "MGA";
-        public const string MKD = "MKD";
-        public const string MMK = "MMK";
-        public const string MNT = "MNT";
-        public const string MOP = "MOP";
-        public const string MRO = "MRO";
-        public const string MUR = "MUR";
-        public const string MVR = "MVR";
-        public const string MWK = "MWK";
-        public const string MXN = "MXN";
-        public const string MXV = "MXV";
-        public const string MYR = "MYR";
-        public const string MZN = "MZN";
-        public const string NAD = "NAD";
-        public const string NGN = "NGN";
-        public const string NIO = "NIO";
-        public const string NOK = "NOK";
-        public const string NPR = "NPR";
-        public const string NZD = "NZD";
-        public const string OMR = "OMR";
-        public const string PAB = "PAB";
-        public const string PEN = "PEN";
-        public const string PGK = "PGK";
-        public const string PHP = "PHP";
-        public const string PKR = "PKR";
-        public const string PLN = "PLN";
-        public const string PYG = "PYG";
-        public const string QAR = "QAR";
-        public const string RON = "RON";
-        public const string RSD = "RSD";
-        public const string RUB = "RUB";
-        public const string RWF = "RWF";
-        public const string SAR = "SAR";
-        public const string SBD = "SBD";
-        public const string SCR = "SCR";
-        public const string SDG = "SDG";
-        public const string SEK = "SEK";
-        public const string SGD = "SGD";
-        public const string SHP = "SHP";
-        public const string SLL = "SLL";
-        public const string SOS = "SOS";
-        public const string SRD = "SRD";
-        public const string SSP = "SSP";
-        public const string STD = "STD";
-        public const string SVC = "SVC";
-        public const string SYP = "SYP";
-        public const string SZL = "SZL";
-        public const string THB = "THB";
-        public const string TJS = "TJS";
-        public const string TMT = "TMT";
-        public const string TND = "TND";
-        public const string TOP = "TOP";
-        public const string TRY = "TRY";
-        public const string TTD = "TTD";
-        public const string TWD = "TWD";
-        public const string TZS = "TZS";
-        public const string UAH = "UAH";
-        public const string UGX = "UGX";
-        public const string USD = "USD";
-        public const string USN = "USN";
-        public const string UYI = "UYI";
-        public const string UYU = "UYU";
-        public const string UZS = "UZS";
-        public const string VED = "VED";
-        public const string VEF = "VEF";
-        public const string VES = "VES";
-        public const string VND = "VND";
-        public const string VUV = "VUV";
-        public const string WST = "WST";
-        public const string XAF = "XAF";
-        public const string XAG = "XAG";
-        public const string XAU = "XAU";
-        public const string XBA = "XBA";
-        public const string XBB = "XBB";
-        public const string XBC = "XBC";
-        public const string XBD = "XBD";
-        public const string XCD = "XCD";
-        public const string XDR = "XDR";
-        public const string XOF = "XOF";
-        public const string XPD = "XPD";
-        public const string XPF = "XPF";
-        public const string XPT = "XPT";
-        public const string XSU = "XSU";
-        public const string XTS = "XTS";
-        public const string XUA = "XUA";
-        public const string XXX = "XXX";
-        public const string YER = "YER";
-        public const string ZAR = "ZAR";
-        public const string ZMW = "ZMW";
-        public const string ZWL = "ZWL";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Value { get; }
+        public static CurrencyCode AED = new("AED", "د.إ.‏", "United Arab Emirates Dirham");
+        public static CurrencyCode AFN = new("AFN", "؋", "Afghan Afghani");
+        public static CurrencyCode ALL = new("ALL", "Lekë", "Albanian Lek");
+        public static CurrencyCode AMD = new("AMD", "֏", "Armenian Dram");
+        public static CurrencyCode ARS = new("ARS", "$", "Argentine Peso");
+        public static CurrencyCode AUD = new("AUD", "$", "Australian Dollar");
+        public static CurrencyCode AZN = new("AZN", "₼", "Azerbaijani Manat");
+        public static CurrencyCode BAM = new("BAM", "КМ", "Bosnia-Herzegovina Convertible Mark");
+        public static CurrencyCode BDT = new("BDT", "৳", "Bangladeshi Taka");
+        public static CurrencyCode BGN = new("BGN", "лв.", "Bulgarian Lev");
+        public static CurrencyCode BHD = new("BHD", "د.ب.‏", "Bahraini Dinar");
+        public static CurrencyCode BND = new("BND", "$", "Brunei Dollar");
+        public static CurrencyCode BOB = new("BOB", "Bs", "Bolivian Boliviano");
+        public static CurrencyCode BRL = new("BRL", "R$", "Brazilian Real");
+        public static CurrencyCode BTN = new("BTN", "Nu.", "Bhutanese Ngultrum");
+        public static CurrencyCode BWP = new("BWP", "P", "Botswanan Pula");
+        public static CurrencyCode BYN = new("BYN", "Br", "Belarusian Ruble");
+        public static CurrencyCode BZD = new("BZD", "$", "Belize Dollar");
+        public static CurrencyCode CAD = new("CAD", "$", "Canadian Dollar");
+        public static CurrencyCode CDF = new("CDF", "FC", "Congolese Franc");
+        public static CurrencyCode CHF = new("CHF", "CHF", "Swiss Franc");
+        public static CurrencyCode CLP = new("CLP", "CLP", "Chilean Peso");
+        public static CurrencyCode CNY = new("CNY", "¥", "Chinese Yuan");
+        public static CurrencyCode COP = new("COP", "$", "Colombian Peso");
+        public static CurrencyCode CRC = new("CRC", "₡", "Costa Rican Colón");
+        public static CurrencyCode CUP = new("CUP", "$", "Cuban Peso");
+        public static CurrencyCode CZK = new("CZK", "Kč", "Czech Koruna");
+        public static CurrencyCode DKK = new("DKK", "kr.", "Danish Krone");
+        public static CurrencyCode DOP = new("DOP", "RD$", "Dominican Peso");
+        public static CurrencyCode DZD = new("DZD", "د.ج.‏", "Algerian Dinar");
+        public static CurrencyCode EGP = new("EGP", "ج.م.‏", "Egyptian Pound");
+        public static CurrencyCode ERN = new("ERN", "Nfk", "Eritrean Nakfa");
+        public static CurrencyCode ETB = new("ETB", "ብር", "Ethiopian Birr");
+        public static CurrencyCode EUR = new("EUR", "€", "Euro");
+        public static CurrencyCode GBP = new("GBP", "£", "British Pound");
+        public static CurrencyCode GEL = new("GEL", "₾", "Georgian Lari");
+        public static CurrencyCode GTQ = new("GTQ", "Q", "Guatemalan Quetzal");
+        public static CurrencyCode HKD = new("HKD", "HK$", "Hong Kong Dollar");
+        public static CurrencyCode HNL = new("HNL", "L", "Honduran Lempira");
+        public static CurrencyCode HRK = new("HRK", "HRK", "Croatian Kuna");
+        public static CurrencyCode HTG = new("HTG", "G", "Haitian Gourde");
+        public static CurrencyCode HUF = new("HUF", "Ft", "Hungarian Forint");
+        public static CurrencyCode IDR = new("IDR", "IDR", "Indonesian Rupiah");
+        public static CurrencyCode ILS = new("ILS", "₪", "Israeli New Shekel");
+        public static CurrencyCode INR = new("INR", "₹", "Indian Rupee");
+        public static CurrencyCode IQD = new("IQD", "د.ع.‏", "Iraqi Dinar");
+        public static CurrencyCode IRR = new("IRR", "ریال", "Iranian Rial");
+        public static CurrencyCode ISK = new("ISK", "ISK", "Icelandic Króna");
+        public static CurrencyCode JMD = new("JMD", "$", "Jamaican Dollar");
+        public static CurrencyCode JOD = new("JOD", "د.أ.‏", "Jordanian Dinar");
+        public static CurrencyCode JPY = new("JPY", "￥", "Japanese Yen");
+        public static CurrencyCode KES = new("KES", "Ksh", "Kenyan Shilling");
+        public static CurrencyCode KGS = new("KGS", "сом", "Kyrgystani Som");
+        public static CurrencyCode KHR = new("KHR", "៛", "Cambodian Riel");
+        public static CurrencyCode KRW = new("KRW", "₩", "South Korean Won");
+        public static CurrencyCode KWD = new("KWD", "د.ك.‏", "Kuwaiti Dinar");
+        public static CurrencyCode KZT = new("KZT", "₸", "Kazakhstani Tenge");
+        public static CurrencyCode LAK = new("LAK", "₭", "Laotian Kip");
+        public static CurrencyCode LBP = new("LBP", "ل.ل.‏", "Lebanese Pound");
+        public static CurrencyCode LKR = new("LKR", "රු.", "Sri Lankan Rupee");
+        public static CurrencyCode LYD = new("LYD", "د.ل.‏", "Libyan Dinar");
+        public static CurrencyCode MAD = new("MAD", "د.م.‏", "Moroccan Dirham");
+        public static CurrencyCode MDL = new("MDL", "L", "Moldovan Leu");
+        public static CurrencyCode MKD = new("MKD", "ден.", "Macedonian Denar");
+        public static CurrencyCode MMK = new("MMK", "K", "Myanmar Kyat");
+        public static CurrencyCode MNT = new("MNT", "₮", "Mongolian Tugrik");
+        public static CurrencyCode MVR = new("MVR", "ރ.", "Maldivian Rufiyaa");
+        public static CurrencyCode MXN = new("MXN", "$", "Mexican Peso");
+        public static CurrencyCode MYR = new("MYR", "RM", "Malaysian Ringgit");
+        public static CurrencyCode NGN = new("NGN", "NGN", "Nigerian Naira");
+        public static CurrencyCode NIO = new("NIO", "C$", "Nicaraguan Córdoba");
+        public static CurrencyCode NOK = new("NOK", "kr", "Norwegian Krone");
+        public static CurrencyCode NPR = new("NPR", "नेरू", "Nepalese Rupee");
+        public static CurrencyCode NZD = new("NZD", "$", "New Zealand Dollar");
+        public static CurrencyCode OMR = new("OMR", "ر.ع.‏", "Omani Rial");
+        public static CurrencyCode PAB = new("PAB", "B/.", "Panamanian Balboa");
+        public static CurrencyCode PEN = new("PEN", "S/", "Peruvian Sol");
+        public static CurrencyCode PHP = new("PHP", "₱", "Philippine Piso");
+        public static CurrencyCode PKR = new("PKR", "ر", "Pakistani Rupee");
+        public static CurrencyCode PLN = new("PLN", "zł", "Polish Zloty");
+        public static CurrencyCode PYG = new("PYG", "Gs.", "Paraguayan Guarani");
+        public static CurrencyCode QAR = new("QAR", "ر.ق.‏", "Qatari Rial");
+        public static CurrencyCode RON = new("RON", "RON", "Romanian Leu");
+        public static CurrencyCode RSD = new("RSD", "RSD", "Serbian Dinar");
+        public static CurrencyCode RUB = new("RUB", "RUB", "Russian Ruble");
+        public static CurrencyCode RWF = new("RWF", "RF", "Rwandan Franc");
+        public static CurrencyCode SAR = new("SAR", "ر.س.‏", "Saudi Riyal");
+        public static CurrencyCode SEK = new("SEK", "kr", "Swedish Krona");
+        public static CurrencyCode SGD = new("SGD", "$", "Singapore Dollar");
+        public static CurrencyCode SOS = new("SOS", "S", "Somali Shilling");
+        public static CurrencyCode SYP = new("SYP", "ل.س.‏", "Syrian Pound");
+        public static CurrencyCode THB = new("THB", "฿", "Thai Baht");
+        public static CurrencyCode TMT = new("TMT", "TMT", "Turkmenistani Manat");
+        public static CurrencyCode TND = new("TND", "د.ت.‏", "Tunisian Dinar");
+        public static CurrencyCode TRY = new("TRY", "₺", "Turkish Lira");
+        public static CurrencyCode TTD = new("TTD", "$", "Trinidad & Tobago Dollar");
+        public static CurrencyCode UAH = new("UAH", "₴", "Ukrainian Hryvnia");
+        public static CurrencyCode USD = new("USD", "$", "US Dollar");
+        public static CurrencyCode UYU = new("UYU", "$", "Uruguayan Peso");
+        public static CurrencyCode UZS = new("UZS", "сўм", "Uzbekistani Som");
+        public static CurrencyCode VES = new("VES", "Bs.S", "Venezuelan Bolívar");
+        public static CurrencyCode VND = new("VND", "₫", "Vietnamese Dong");
+        public static CurrencyCode XAF = new("XAF", "FCFA", "Central African CFA Franc");
+        public static CurrencyCode XCD = new("XCD", "EC$", "East Caribbean Dollar");
+        public static CurrencyCode XOF = new("XOF", "CFA", "West African CFA Franc");
+        public static CurrencyCode YER = new("YER", "ر.ي.‏", "Yemeni Rial");
+        public static CurrencyCode ZAR = new("ZAR", "R", "South African Rand");
 
         /// <summary>
         /// Defualt Currency will be CurrentRegion.ISOCurrencySymbol
         /// </summary>
         public CurrencyCode()
         {
-            Value = GlobalSetting.DefaultISOCurrencySymbol;
+            ISOCurrencySymbol = GlobalSetting.DefaultCurrencyCode.ISOCurrencySymbol;
+            CurrencySymbol = GlobalSetting.DefaultCurrencyCode.CurrencySymbol;
+            EnglishName = GlobalSetting.DefaultCurrencyCode.EnglishName;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        /// <param name="value"></param>
-        /// 
-        public CurrencyCode(string value)
+        /// <param name="iSOCurrencySymbol"></param>
+        /// <param name="currencySymbol"></param>
+        /// <param name="englishName"></param>
+        public CurrencyCode(string iSOCurrencySymbol, string currencySymbol, string englishName)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(iSOCurrencySymbol))
             {
-                throw new ArgumentException($"'{nameof(value)}' cannot be null or whitespace.", nameof(value));
+                throw new ArgumentException($"'{nameof(iSOCurrencySymbol)}' cannot be null or whitespace.", nameof(iSOCurrencySymbol));
             }
 
-            Value = value;
+            if (string.IsNullOrWhiteSpace(currencySymbol))
+            {
+                throw new ArgumentException($"'{nameof(currencySymbol)}' cannot be null or whitespace.", nameof(currencySymbol));
+            }
+
+            if (string.IsNullOrWhiteSpace(englishName))
+            {
+                throw new ArgumentException($"'{nameof(englishName)}' cannot be null or whitespace.", nameof(englishName));
+            }
+
+            ISOCurrencySymbol = iSOCurrencySymbol;
+            CurrencySymbol = currencySymbol;
+            EnglishName = englishName;
         }
 
         /// <summary>
-        /// 
+        /// Gets the currency symbol associated with the country/region.
         /// </summary>
-        /// <param name="cType"></param>
-        public static implicit operator string(CurrencyCode cType) => cType.Value;
+        public string CurrencySymbol { get; }
 
         /// <summary>
-        /// 
+        /// The name, in English, of the currency used in the country/region
         /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator CurrencyCode(string value) => new(value);
+        public string EnglishName { get; }
 
         /// <summary>
-        /// 
+        /// Gets the three-character ISO 4217 currency symbol associated with the country/region
+        /// </summary>
+        public string ISOCurrencySymbol { get; }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => Value;
+        public override string ToString() => GlobalSetting.ShowISOCurrencySymbol ? ISOCurrencySymbol : CurrencySymbol;
 
         #region Equality
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(CurrencyCode left, CurrencyCode right) => !(left == right);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(CurrencyCode left, CurrencyCode right) => left.Equals(right);
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
         public bool Equals(CurrencyCode other)
         {
-            return other is not null && (ReferenceEquals(this, other) || string.Equals(Value, other.Value));
+            return other is not null && (ReferenceEquals(this, other) || string.Equals(ISOCurrencySymbol, other.ISOCurrencySymbol));
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -259,81 +214,33 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked
             {
-                return Value.GetHashCode() * 397;
+                return ISOCurrencySymbol.GetHashCode() * 397;
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(CurrencyCode left, CurrencyCode right) => left.Equals(right);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(CurrencyCode left, CurrencyCode right) => !(left == right);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(CurrencyCode left, string right) => left.Equals(new CurrencyCode(right));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(CurrencyCode left, string right) => !(left == new CurrencyCode(right));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(string left, CurrencyCode right) => right.Equals(new CurrencyCode(left));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(string left, CurrencyCode right) => !(right == new CurrencyCode(left));
-
-        #endregion
+        #endregion Equality
 
         #region Comparable
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
         public int CompareTo(CurrencyCode other)
         {
-            return other is null ? 1 : ReferenceEquals(this, other) ? 0 : string.Compare(Value, other.Value);
+            return other is null ? 1 : ReferenceEquals(this, other) ? 0 : string.Compare(ISOCurrencySymbol, other.ISOCurrencySymbol);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -348,6 +255,6 @@ namespace Thudugala.System
             return CompareTo((CurrencyCode)other);
         }
 
-        #endregion
+        #endregion Comparable
     }
 }

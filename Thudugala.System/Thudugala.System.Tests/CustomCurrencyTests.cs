@@ -13,9 +13,9 @@
 
     public class CustomCurrencyCode : CurrencyCode
     {
-        public const string MBTC = "mBTC";
+        public static CustomCurrencyCode MBTC = new("mBTC", "B", "Bitcoin");
 
-        public CustomCurrencyCode(string value) : base(value)
+        public CustomCurrencyCode(string iSOCurrencySymbol, string currencySymbol, string englishName) : base(iSOCurrencySymbol, currencySymbol, englishName)
         {
         }
     }

@@ -3,22 +3,12 @@
 namespace Thudugala.System.Exceptions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class IncompatibleTypeException : InvalidOperationException
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public Type SourceType { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Type DestinationType { get; }
-
-        /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sourceType"></param>
         /// <param name="destinationType"></param>
@@ -32,7 +22,17 @@ namespace Thudugala.System.Exceptions
         }
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        public Type DestinationType { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public Type SourceType { get; }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="sourceType"></param>
         /// <param name="destinationType"></param>

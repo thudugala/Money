@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using System.Text;
 
 namespace Thudugala.System.Tests;
 
@@ -8,7 +9,7 @@ public class CurrencyTests
     [Fact]
     public void AllCurrencyCodesAreInRegionInfo()
     {
-        var iSOCurrencySymbols = new SortedSet<string>();
+        var allCulturesCurrencyCodes = new SortedSet<CurrencyCode>();
 
         foreach (var ci in CultureInfo.GetCultures(CultureTypes.AllCultures))
         {
@@ -18,25 +19,32 @@ public class CurrencyTests
             {
                 continue;
             }
-            var regin = new RegionInfo(ci.LCID);
+            var region = new RegionInfo(ci.LCID);
 
-            if (regin.ISOCurrencySymbol == "¤¤")
+            if (region.ISOCurrencySymbol == "¤¤")
             {
                 continue;
             }
 
-            iSOCurrencySymbols.Add(regin.ISOCurrencySymbol);
+            allCulturesCurrencyCodes.Add(new CurrencyCode(region.ISOCurrencySymbol, region.CurrencySymbol, region.CurrencyEnglishName));
         }
+
+        //var sb = new StringBuilder();
+        //foreach (var currencyCode in allCulturesCurrencyCodes)
+        //{
+        //    sb.AppendLine($"public static CurrencyCode {currencyCode.ISOCurrencySymbol} = new(\"{currencyCode.ISOCurrencySymbol}\", \"{currencyCode.CurrencySymbol}\", \"{currencyCode.EnglishName}\");");
+        //}
+        //var text = sb.ToString();
 
         var existingCurrencyCodes = typeof(CurrencyCode)
             .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-            .Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.FieldType == typeof(string))
-            .Select(x => x.Name)
+            .Where(fi => fi.IsPublic && fi.IsStatic && fi.FieldType == typeof(CurrencyCode))
+            .Select(x => x.GetValue(null) as CurrencyCode)
             .ToHashSet();
 
-        foreach (var iSOCurrencySymbol in iSOCurrencySymbols)
+        foreach (var currencyCode in allCulturesCurrencyCodes)
         {
-            Assert.Contains(iSOCurrencySymbol, existingCurrencyCodes);
+            Assert.Contains(currencyCode, existingCurrencyCodes);
         }
     }        
 }

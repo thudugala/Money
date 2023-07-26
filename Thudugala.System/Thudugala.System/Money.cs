@@ -4,44 +4,29 @@ using Thudugala.System.Exceptions;
 namespace Thudugala.System
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public readonly struct Money : IComparable, IComparable<Money>, IEquatable<Money>
     {
         /// <summary>
-        /// Amount = 0 and Currency is GlobalSetting.DefaultISOCurrencySymbol
-        /// </summary>
-        public static Money Empty { get; } = new Money();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public decimal Amount { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CurrencyCode Currency { get; }
-
-        /// <summary>
-        /// 
+        /// When the amount and CurrencyCode are not specified
+        /// The amount will default to zero, and CurrencyCode will default to GlobalSetting.DefaultCurrencyCode.
         /// </summary>
         public Money() : this(0)
         {
-
         }
 
         /// <summary>
-        /// 
+        /// When CurrencyCode is not specified.
+        /// CurrencyCode will default to GlobalSetting.DefaultCurrencyCode.
         /// </summary>
         /// <param name="amount"></param>
         public Money(decimal amount) : this(amount, null)
         {
-
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
@@ -52,15 +37,78 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        /// Amount is zero and Currency is GlobalSetting.DefaultCurrencyCode
+        /// </summary>
+        public static Money Empty { get; } = new Money();
+
+        /// <summary>
+        ///
+        /// </summary>
+        public decimal Amount { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public CurrencyCode Currency { get; }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"{Amount} {Currency}";
+        public override string ToString() => GlobalSetting.MoneyToString(this);
 
         #region Equality
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(Money left, Money right) => !(left == right);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(Money left, decimal right) => !(left == new Money(right));
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator !=(decimal left, Money right) => !(right == new Money(left));
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(Money left, Money right) => left.Equals(right);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(Money left, decimal right) => left.Equals(new Money(right));
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator ==(decimal left, Money right) => right.Equals(new Money(left));
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -70,7 +118,7 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -80,7 +128,7 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -91,60 +139,108 @@ namespace Thudugala.System
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(Money left, Money right) => left.Equals(right);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(Money left, Money right) => !(left == right);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(Money left, decimal right) => left.Equals(new Money(right));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(Money left, decimal right) => !(left == new Money(right));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator ==(decimal left, Money right) => right.Equals(new Money(left));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator !=(decimal left, Money right) => !(right == new Money(left));
-
-        #endregion
+        #endregion Equality
 
         #region Comparable
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator <(Money left, Money right) => left.CompareTo(right) < 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator <(Money left, decimal right) => left.CompareTo(new Money(right)) < 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator <(decimal left, Money right) => right.CompareTo(new Money(left)) < 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator <=(Money left, Money right) => left.CompareTo(right) <= 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator <=(Money left, decimal right) => left.CompareTo(new Money(right)) <= 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator <=(decimal left, Money right) => right.CompareTo(new Money(left)) <= 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator >(Money left, Money right) => left.CompareTo(right) > 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator >(Money left, decimal right) => left.CompareTo(new Money(right)) > 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator >(decimal left, Money right) => right.CompareTo(new Money(left)) > 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator >=(Money left, Money right) => left.CompareTo(right) >= 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator >=(Money left, decimal right) => left.CompareTo(new Money(right)) >= 0;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool operator >=(decimal left, Money right) => right.CompareTo(new Money(left)) >= 0;
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -156,7 +252,7 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -167,153 +263,44 @@ namespace Thudugala.System
             return CompareTo((Money)other);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator <(Money left, Money right) => left.CompareTo(right) < 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator <=(Money left, Money right) => left.CompareTo(right) <= 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator >(Money left, Money right) => left.CompareTo(right) > 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator >=(Money left, Money right) => left.CompareTo(right) >= 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator <(Money left, decimal right) => left.CompareTo(new Money(right)) < 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator <=(Money left, decimal right) => left.CompareTo(new Money(right)) <= 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator >(Money left, decimal right) => left.CompareTo(new Money(right)) > 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator >=(Money left, decimal right) => left.CompareTo(new Money(right)) >= 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator <(decimal left, Money right) => right.CompareTo(new Money(left)) < 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator <=(decimal left, Money right) => right.CompareTo(new Money(left)) <= 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator >(decimal left, Money right) => right.CompareTo(new Money(left)) > 0;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static bool operator >=(decimal left, Money right) => right.CompareTo(new Money(left)) >= 0;
-
-        #endregion
+        #endregion Comparable
 
         #region Unary Operators
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="me"></param>
         /// <returns></returns>
-        public static Money operator ++(Money me) => new(me.Amount + 1, me.Currency);
+        public static Money operator -(Money me) => new(-me.Amount, me.Currency);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="me"></param>
         /// <returns></returns>
         public static Money operator --(Money me) => new(me.Amount - 1, me.Currency);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="me"></param>
         /// <returns></returns>
         public static Money operator +(Money me) => new(+me.Amount, me.Currency);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="me"></param>
         /// <returns></returns>
-        public static Money operator -(Money me) => new(-me.Amount, me.Currency);
+        public static Money operator ++(Money me) => new(me.Amount + 1, me.Currency);
 
-        #endregion
+        #endregion Unary Operators
 
         #region Binary Operations
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static Money operator +(Money left, Money right)
-        {
-            CurrencyMismatchException.ThrowIfMisMatch(left.Currency, right.Currency);
-
-            return new Money(left.Amount + right.Amount, left.Currency);
-        }
-
-        /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -324,9 +311,25 @@ namespace Thudugala.System
 
             return new Money(left.Amount - right.Amount, left.Currency);
         }
-                
+
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static Money operator %(Money left, decimal right) => new(left.Amount % right, left.Currency);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static Money operator %(decimal left, Money right) => new(left % right.Amount, right.Currency);
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -334,7 +337,7 @@ namespace Thudugala.System
         public static Money operator *(Money left, decimal right) => new(left.Amount * right, left.Currency);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -342,7 +345,7 @@ namespace Thudugala.System
         public static Money operator *(decimal left, Money right) => new(left * right.Amount, right.Currency);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="rate"></param>
@@ -355,7 +358,7 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="rate"></param>
         /// <param name="right"></param>
@@ -368,7 +371,7 @@ namespace Thudugala.System
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -376,29 +379,26 @@ namespace Thudugala.System
         public static Money operator /(Money left, decimal right) => new(left.Amount / right, left.Currency);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
         public static Money operator /(decimal left, Money right) => new(left / right.Amount, right.Currency);
-               
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-        public static Money operator %(Money left, decimal right) => new(left.Amount % right, left.Currency);
+        public static Money operator +(Money left, Money right)
+        {
+            CurrencyMismatchException.ThrowIfMisMatch(left.Currency, right.Currency);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        public static Money operator %(decimal left, Money right) => new(left % right.Amount, right.Currency);
+            return new Money(left.Amount + right.Amount, left.Currency);
+        }
 
-        #endregion
+        #endregion Binary Operations
     }
 }

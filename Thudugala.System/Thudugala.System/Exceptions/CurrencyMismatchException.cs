@@ -10,16 +10,6 @@ namespace Thudugala.System.Exceptions
         /// <summary>
         /// 
         /// </summary>
-        public CurrencyCode SourceCurrency { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CurrencyCode DestinationCurrency { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sourceCurrency"></param>
         /// <param name="destinationCurrency"></param>
         public CurrencyMismatchException(
@@ -30,6 +20,16 @@ namespace Thudugala.System.Exceptions
             SourceCurrency = sourceCurrency;
             DestinationCurrency = destinationCurrency;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public CurrencyCode DestinationCurrency { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public CurrencyCode SourceCurrency { get; }
 
         /// <summary>
         /// 

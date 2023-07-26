@@ -4,7 +4,7 @@ using Thudugala.System.Exceptions;
 namespace Thudugala.System.Tests;
 
 public class MoneyTests
-{   
+{
     [Fact]
     public void MoneyCurrencyIsNotEqual()
     {
@@ -34,18 +34,18 @@ public class MoneyTests
     {
         var m1 = new Money();
         Assert.Equal(0, m1.Amount);
-        Assert.Equal(GlobalSetting.DefaultISOCurrencySymbol, m1.Currency);
+        Assert.Equal(GlobalSetting.DefaultCurrencyCode, m1.Currency);
     }
 
     [Fact]
     public void SetGlobalDefualtCurrencyToNull()
     {
-        var defultCurrency = GlobalSetting.DefaultISOCurrencySymbol;       
-        GlobalSetting.DefaultISOCurrencySymbol = null;
+        var defultCurrency = GlobalSetting.DefaultCurrencyCode;
+        GlobalSetting.DefaultCurrencyCode = null;
 
         var m1 = new Money();
         Assert.Equal(0, m1.Amount);
-        Assert.Equal(GlobalSetting.DefaultISOCurrencySymbol, m1.Currency);
+        Assert.Equal(GlobalSetting.DefaultCurrencyCode, m1.Currency);
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class MoneyTests
     {
         var m1 = new Money(1m, null);
         Assert.Equal(1, m1.Amount);
-        Assert.Equal(GlobalSetting.DefaultISOCurrencySymbol, m1.Currency);
+        Assert.Equal(GlobalSetting.DefaultCurrencyCode, m1.Currency);
     }
 
     [Fact]
@@ -61,7 +61,7 @@ public class MoneyTests
     {
         var m1 = new Money(1m);
         Assert.Equal(1m, m1.Amount);
-        Assert.Equal(GlobalSetting.DefaultISOCurrencySymbol, m1.Currency);
+        Assert.Equal(GlobalSetting.DefaultCurrencyCode, m1.Currency);
     }
 
     [Fact]
@@ -83,8 +83,7 @@ public class MoneyTests
         var result = m1 - m2;
         Assert.Equal(new Money(1m, CurrencyCode.NZD), result);
     }
-    
-    
+
     [Fact]
     public void MoneyMultiplyDecimal()
     {
@@ -215,5 +214,24 @@ public class MoneyTests
         var m2 = new Money(1m, CurrencyCode.NZD);
 
         Assert.True(m1 <= m2);
+    }
+
+    [Fact]
+    public void MoneyToString()
+    {
+        var m1 = new Money(1m, CurrencyCode.NZD);
+        var stringM1 = m1.ToString();
+        Assert.Equal($"{m1.Amount} {m1.Currency}", stringM1);
+    }
+
+    [Fact]
+    public void MoneyChangedToString()
+    {
+        GlobalSetting.MoneyToString = (money) => { return $"{money.Currency.CurrencySymbol} {decimal.Round(money.Amount, 2)}"; };
+
+        var m1 = new Money(1.0500001m, CurrencyCode.NZD);
+        var stringM1 = m1.ToString();
+
+        Assert.Equal($"{m1.Currency.CurrencySymbol} {m1.Amount:N2}", stringM1);
     }
 }
