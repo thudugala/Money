@@ -1,27 +1,30 @@
 name: Nuget Build 
 
-  on: [push]
+on:
+  push:
+    branches: [ "main" ]
   
-  jobs:
-    nuget:
+jobs:
+  nuget:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-        
+
     - name: Restore dependencies
       run: dotnet restore "Thudugala.MultiCurrencyMoney/Thudugala.MultiCurrencyMoney.sln"
-      
+
     - name: Build
       run: dotnet build "Thudugala.MultiCurrencyMoney/Thudugala.MultiCurrencyMoney.sln" --no-restore
-      
+
     - name: Add private GitHub registry to NuGet
       run: dotnet nuget sources add -name "GitHub" -source "https://nuget.pkg.github.com/thudugala/index.json" -userName thudugala -password ${{ secrets.Elvin_Package_Registry }}
-      
+
     - uses: actions/upload-artifact@v2.2.4
       with:
           name: Thudugala.MultiCurrencyMoney
