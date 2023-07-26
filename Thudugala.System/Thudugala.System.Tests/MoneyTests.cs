@@ -1,4 +1,5 @@
 using System.Globalization;
+using Thudugala.System.Exceptions;
 
 namespace Thudugala.System.Tests;
 
@@ -167,5 +168,52 @@ public class MoneyTests
 
         var result = --m1;
         Assert.Equal(new Money(1m, CurrencyCode.NZD), result);
+    }
+
+    [Fact]
+    public void MoneyGreaterThan()
+    {
+        var m1 = new Money(2m, CurrencyCode.NZD);
+        var m2 = new Money(1m, CurrencyCode.NZD);
+
+        var result = m1 > m2;
+        Assert.True(result);
+    }
+
+
+    [Fact]
+    public void MoneyGreaterThanCheckDifferentCurrencyThrowsException()
+    {
+        var m1 = new Money(2m, CurrencyCode.NZD);
+        var m2 = new Money(1m, CurrencyCode.AUD);
+
+        Assert.Throws<CurrencyMismatchException>(() => m1 > m2);
+    }
+
+    [Fact]
+    public void MoneyLessThan()
+    {
+        var m1 = new Money(1m, CurrencyCode.NZD);
+        var m2 = new Money(2m, CurrencyCode.NZD);
+
+        Assert.True(m1 < m2);
+    }
+
+    [Fact]
+    public void MoneyGreaterThanOrEqual()
+    {
+        var m1 = new Money(2m, CurrencyCode.NZD);
+        var m2 = new Money(1m, CurrencyCode.NZD);
+
+        Assert.True(m1 >= m2);
+    }
+
+    [Fact]
+    public void MoneyLessThanOrEqual()
+    {
+        var m1 = new Money(1m, CurrencyCode.NZD);
+        var m2 = new Money(1m, CurrencyCode.NZD);
+
+        Assert.True(m1 <= m2);
     }
 }

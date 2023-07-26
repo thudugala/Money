@@ -4,43 +4,44 @@ using Thudugala.System.Exceptions;
 namespace Thudugala.System
 {
     /// <summary>
-    /// Example: 1 USD (SourceCurrency) = 1.6 (Rate) NZD (DestinationCurrency)
+    /// Will convert Money to different Currency with the given rate 
+    /// Example: 1 USD (FromCurrency) = 1.6 (Rate) NZD (ToCurrency)
     /// </summary>
     public readonly struct ExchangeRate : IComparable, IComparable<ExchangeRate>, IEquatable<ExchangeRate>
     {
         /// <summary>
-        /// 
+        /// Money Currency
         /// </summary>
-        public CurrencyCode SourceCurrency { get; }
+        public CurrencyCode FromCurrency { get; }
 
         /// <summary>
-        /// 
+        /// Money to be Currency
         /// </summary>
-        public CurrencyCode DestinationCurrency { get; }
+        public CurrencyCode ToCurrency { get; }
 
         /// <summary>
-        /// 
+        /// Rate canot be Zero or Negative
         /// </summary>
         public decimal Rate { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sourceCurrency"></param>
-        /// <param name="destinationCurrency"></param>
-        /// <param name="rate"></param>
-        public ExchangeRate(CurrencyCode sourceCurrency, CurrencyCode destinationCurrency, decimal rate)
+        /// <param name="fromCurrency">Money Currency</param>
+        /// <param name="toCurrency">Money to be Currency</param>
+        /// <param name="rate">Rate will not be Zero or Negative</param>
+        public ExchangeRate(CurrencyCode fromCurrency, CurrencyCode toCurrency, decimal rate)
         {
-            SourceCurrency = sourceCurrency;
-            DestinationCurrency = destinationCurrency;
-            Rate = rate;
+            FromCurrency = fromCurrency;
+            ToCurrency = toCurrency;
+            Rate = rate == 0 ? 1 : Math.Abs(rate);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"1 {SourceCurrency} = {Rate} {DestinationCurrency}";
+        public override string ToString() => $"1 {FromCurrency} = {Rate} {ToCurrency}";
 
         #region Equality
 
@@ -51,8 +52,8 @@ namespace Thudugala.System
         /// <returns></returns>
         public bool Equals(ExchangeRate other)
         {
-            return CurrencyCode.Equals(SourceCurrency, other.SourceCurrency) &&
-                CurrencyCode.Equals(DestinationCurrency, other.DestinationCurrency) &&
+            return CurrencyCode.Equals(FromCurrency, other.FromCurrency) &&
+                CurrencyCode.Equals(ToCurrency, other.ToCurrency) &&
                 decimal.Equals(Rate, other.Rate);
         }
 
@@ -74,7 +75,7 @@ namespace Thudugala.System
         {
             unchecked
             {
-                return (Rate.GetHashCode() * 397) ^ SourceCurrency.GetHashCode() ^ DestinationCurrency.GetHashCode();
+                return (Rate.GetHashCode() * 397) ^ FromCurrency.GetHashCode() ^ ToCurrency.GetHashCode();
             }
         }
 
@@ -105,8 +106,8 @@ namespace Thudugala.System
         /// <returns></returns>
         public int CompareTo(ExchangeRate other)
         {
-            CurrencyMismatchException.ThrowIfMisMatch(SourceCurrency, other.SourceCurrency);
-            CurrencyMismatchException.ThrowIfMisMatch(DestinationCurrency, other.DestinationCurrency);
+            CurrencyMismatchException.ThrowIfMisMatch(FromCurrency, other.FromCurrency);
+            CurrencyMismatchException.ThrowIfMisMatch(ToCurrency, other.ToCurrency);
 
             return Rate.CompareTo(other.Rate);
         }

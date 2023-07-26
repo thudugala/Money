@@ -4,7 +4,7 @@ using Thudugala.System.Exceptions;
 namespace Thudugala.System
 {
     /// <summary>
-    /// Designed to be inheritant and ad new currency codes if needed. 
+    /// Designed to be inherited and ad new currency codes if needed. 
     /// </summary>
     public class CurrencyCode : IComparable, IComparable<CurrencyCode>, IEquatable<CurrencyCode>
     {

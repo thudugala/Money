@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Thudugala.System.Exceptions;
 
 namespace Thudugala.System
@@ -9,6 +8,11 @@ namespace Thudugala.System
     /// </summary>
     public readonly struct Money : IComparable, IComparable<Money>, IEquatable<Money>
     {
+        /// <summary>
+        /// Amount = 0 and Currency is GlobalSetting.DefaultISOCurrencySymbol
+        /// </summary>
+        public static Money Empty { get; } = new Money();
+
         /// <summary>
         /// 
         /// </summary>
@@ -345,9 +349,9 @@ namespace Thudugala.System
         /// <returns></returns>
         public static Money operator *(Money left, ExchangeRate rate)
         {
-            CurrencyMismatchException.ThrowIfMisMatch(left.Currency, rate.SourceCurrency);
+            CurrencyMismatchException.ThrowIfMisMatch(left.Currency, rate.FromCurrency);
 
-            return new(left.Amount * rate.Rate, rate.DestinationCurrency);
+            return new(left.Amount * rate.Rate, rate.ToCurrency);
         }
 
         /// <summary>
@@ -358,9 +362,9 @@ namespace Thudugala.System
         /// <returns></returns>
         public static Money operator *(ExchangeRate rate, Money right)
         {
-            CurrencyMismatchException.ThrowIfMisMatch(right.Currency, rate.SourceCurrency);
+            CurrencyMismatchException.ThrowIfMisMatch(right.Currency, rate.FromCurrency);
 
-            return new(right.Amount * rate.Rate, rate.DestinationCurrency);
+            return new(right.Amount * rate.Rate, rate.ToCurrency);
         }
 
         /// <summary>
