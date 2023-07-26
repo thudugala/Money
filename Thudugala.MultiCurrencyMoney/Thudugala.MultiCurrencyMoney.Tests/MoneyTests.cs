@@ -217,6 +217,8 @@ public class MoneyTests
     [Fact]
     public void MoneyToString()
     {
+        GlobalSetting.ResetMoneyToString();
+
         var m1 = new Money(1m, CurrencyCode.NZD);
         var stringM1 = m1.ToString();
         Assert.Equal($"{m1.Amount} {m1.Currency}", stringM1);

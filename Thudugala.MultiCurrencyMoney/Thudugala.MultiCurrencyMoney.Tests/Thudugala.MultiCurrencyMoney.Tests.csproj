@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Thudugala.System\Thudugala.MultiCurrencyMoney.csproj" />
+    <ProjectReference Include="..\Thudugala.MultiCurrencyMoney\Thudugala.MultiCurrencyMoney.csproj" />
   </ItemGroup>
 
 </Project>
