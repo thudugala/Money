@@ -5,7 +5,7 @@
 [![NuGet](https://img.shields.io/nuget/dt/Thudugala.MultiCurrencyMoney.svg)](https://www.nuget.org/packages/Thudugala.MultiCurrencyMoney/)
 
 # Money
-A Money class with multi-currency arithmetic for.Net
+A Money class with multi-currency arithmetic for .Net (C#)
 
 ## Usage
 
